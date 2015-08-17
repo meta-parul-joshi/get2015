@@ -50,7 +50,7 @@ public class studentAndTeacherInheritPersonTest {
 	@Test	
 	public void testStudentName() 
 	{
-		Student object=new Student(1,"Riddhi",23);
+		Student object=new Student(1,"Parul",23);
 		object.setUid(2);
 		int actual=object.getUid();
 		assertEquals(2, actual);	
@@ -60,8 +60,8 @@ public class studentAndTeacherInheritPersonTest {
 	public void testStudentSubject() 
 	{
 		Student object=new Student(2,"N",32);
-		String input[]={"English","Hindi"};
-		String expected[]={"English","Hindi"};
+		String input[]={"Jqurrey","Java"};
+		String expected[]={"Jqurrey","Java"};
 		object.setCourses(input);
 		String actual[]=object.getCourses();
 		boolean flag=actual[0].equals(expected[0]);
@@ -83,8 +83,8 @@ public class studentAndTeacherInheritPersonTest {
 	public void testTeacherSubject()
 	{
 		Teacher object=new Teacher(1,"Manish",4079);
-		String input="English";
-		String expected="English";
+		String input="Jqurrey";
+		String expected="Jqurrey";
 		object.setSubject(input);
 		String actual=object.getSubject();
 		boolean flag=actual.equals(expected);
