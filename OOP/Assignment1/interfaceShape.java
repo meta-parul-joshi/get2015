@@ -1,9 +1,7 @@
 import java.util.Scanner;
-/**Interface shape implemented by circle and square classes
+/*Interface shape implemented by circle and square classes
  * @parul joshi
- *
  */
-
 interface Shape 
 {
 	String draw();
@@ -12,8 +10,7 @@ interface Shape
 
 class Circle implements Shape
 {
-	 //Radius stores radius of a user.
-	 
+	//Radius stores radius of a user.
 	private int radius;
 	private double pi=3.14;
 	
@@ -39,8 +36,7 @@ class Circle implements Shape
 
 class Square implements Shape 
 {
-	//Side stores the side of square.
-	 
+	//Side stores the side of square. 
 	private int side;
 	
 	//Constructor of the class.
@@ -75,17 +71,16 @@ public class interfaceShape
 		Shape circleShape=new Circle(radius);
 		interfaceShape object=new interfaceShape();
 		
-		//Object of class is made with input parameter
+		//Object of class is made with input parameter.
 		object.printShape(circleShape);
 
 		//Takes input from the user
 		side=Utility.GetInput("Enter the side of square");
 				
-		//Object of class is made with input parameter
+		//Object of class is made with input parameter.
 		Shape squareShape=new Square(side);
 		object.printShape(squareShape);
-		
-		}	
+	}	
 
 	//used to call the function of the class whose object is passed
 	void printShape(Shape shapeObject)

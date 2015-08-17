@@ -29,7 +29,7 @@ public class carServiceStationTest {
 	public void testCountMechanic() 
 	{
 		mechanic objMechanicSedan = new mechanic("Sedan");
-		int expectedNumMechanic=3;
+		int expectedNumMechanic=1;
 		int actualNumMec=objMechanicSedan.numOfMechanicOfCarType();
 		assertEquals("Match",expectedNumMechanic,actualNumMec);
 	}
@@ -47,7 +47,7 @@ public class carServiceStationTest {
 	public void testCostCar() 
 	{
 		mechanic objMechanicSedan = new mechanic("Sedan");
-		int expectedCost=3000;
+		int expectedCost=2000;
 		int actualCost=objMechanicSedan.costOfCarServiced(1);
 		assertEquals("Match",expectedCost,actualCost);
 	}
@@ -63,3 +63,4 @@ public class carServiceStationTest {
 		assertEquals("Match",expectedNumCarServiced,actualNumCarServiced);
 	}
 }
+

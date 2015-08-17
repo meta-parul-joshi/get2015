@@ -75,7 +75,7 @@ class Teacher extends Person
 	private String subject;
 	
 	/*Constructor.*/
-	public Teacher(int uid,String name,int teacherId)
+	public Teacher(int uid, String name,int teacherId)
 	{
 		super(uid,name);
 		this.teacherId=teacherId;

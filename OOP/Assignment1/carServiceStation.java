@@ -71,6 +71,7 @@ class mechanic
 		{
 			ex.printStackTrace();
 		}
+		
 		return totalCost;
 	}			
 }
@@ -164,7 +165,7 @@ public class carServiceStation
 			
 			//Prints how many cars serviced of HatchBack type.
 			System.out.println("Sedan : "+numOfSedanServiced);			
-			int earningBySedan = objMechanicSedan.costOfCarServiced(countMechanicSedan);
+			int earningBySedan = objMechanicSedan.costOfCarServiced(numOfSedanServiced);
 			
 			//Initialize object of class car for cartype Hatchback .
 			car objCarHatchback = new car("Hatchback");
@@ -177,7 +178,7 @@ public class carServiceStation
 			
 			//Prints how many cars serviced of HatchBack type.
 			System.out.println("HatchBack : "+numOfHatchbackServiced);
-			int earningByHatchback = objMechanicHatchback.costOfCarServiced(countMechanicHatchback);
+			int earningByHatchback = objMechanicHatchback.costOfCarServiced(numOfHatchbackServiced);
 
 			//Initialize object of class car for cartype SUV. 
 			car objCarSUV = new car("SUV");
@@ -190,7 +191,7 @@ public class carServiceStation
 			
 			//Prints how many cars serviced of SUV type.
 			System.out.println("SUV : "+numOfSUVServiced);
-			int earningBySUV = objMechanicSUV.costOfCarServiced(countMechanicSUV);
+			int earningBySUV = objMechanicSUV.costOfCarServiced(numOfSUVServiced);
 			
 	        //Prints total earning.
 			System.out.println("Total earning : "+( earningBySedan + earningByHatchback + earningBySUV ));

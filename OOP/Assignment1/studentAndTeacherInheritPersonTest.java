@@ -27,7 +27,7 @@ public class studentAndTeacherInheritPersonTest {
 
 	//Positive Test
 	@Test
-	public void positiveTestPerson()
+	public void testIfPersonNameIsCorrect()
 	{
 		Person object=new Person(2,"N");
 		object.setName("Parul");

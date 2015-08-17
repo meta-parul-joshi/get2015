@@ -29,6 +29,7 @@ public class matrix
 	public matrix transpose()
 	{
 		matrix objMatrix=new matrix(noRow,noColumn);
+	
 		for(int i=0;i<noRow;i++)
 		{
 			for(int j=0;j<noColumn;j++)
