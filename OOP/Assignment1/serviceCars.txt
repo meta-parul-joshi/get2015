@@ -1,0 +1,3 @@
+SUV
+Sedan
+Hatchback
