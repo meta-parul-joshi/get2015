@@ -19,10 +19,10 @@ public class Utility {
 			
 		}while(true);
 		
+		sc.close();
 		return number;
 	}
 	
-
 	private static boolean isNumeric(String input) 
 	{
 		try 
@@ -35,11 +35,5 @@ public class Utility {
 		}
 		
 		return true;
-	}
-
-	private String hi()
-	{
-		return "HI";
-	
 	}
 }

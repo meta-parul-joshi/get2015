@@ -1,3 +1,7 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,100 +14,144 @@ public class travel {
 	 */
 	public static void main(String[] args) 
 	{
-		Scanner sc = new Scanner(System.in);
+		//public enum trainType{Goods,Passenger};
 		List<trainDetails> trainInformation=new ArrayList<trainDetails>();
+		BufferedReader objBufferedReader;
+		try
+		{
+			//Reading the questions stored in the txt file
+			objBufferedReader=new BufferedReader(new FileReader("C://Users/Parul/workspace/Assignment7/src/trainInfo.txt"));
+			String line;
+			String[] trainInfo;
+			while ((line = objBufferedReader.readLine()) != null)
+			{
+				trainInfo = line.split(",");									// Reading up details line by line
+				trainInformation=trainDetails.readTrainInfo(trainInfo);
+			}
+		}
 		
-		trainInformation=trainDetails.readTrainInfo();
-		String userName,typeOfTrain;
+		//Catches an exception if file not found
+		catch(FileNotFoundException e)
+		{
+			System.out.println(e);
+
+		}
+		catch(IOException e)
+		{
+			System.out.println(e);
+		}	
+		
+		Scanner sc = new Scanner(System.in);
+		String userName,typeOfTrain,from,to;
 		List<trainDetails> output = new ArrayList<trainDetails>();
-		bookingInformation object=new bookingInformation();
-		object.sorting(trainInformation);
-		String result="",answer,from,to;
-		
-		int id,seats=0,price,paymentMethod,y=0;
+		reservationSystem objReservationSystem=new reservationSystem();
+		objReservationSystem.sortingTrainChart(trainInformation);
+		int id,seats=0,fare,paymentMethod,y=0;
 		double weight=0.0,amount=0.0;
+		
 		
 		try
 		{
 			do
 			{
 				System.out.println("Enter your name");
-				String user=sc.next();
-
+				userName=sc.next();
+				boolean flag;
 				do				//accepting input from user until valid input is entered
 				{
 					System.out.println("Enter type of train required : Goods or Passenger");
-					answer=sc.next();
-					output=object.typeFiltering(answer);		//invoking method to filter the list based on train type
-					if((output.size())==0)
+					typeOfTrain=sc.next();
+					if((typeOfTrain.equalsIgnoreCase("Goods")==false) && (typeOfTrain.equalsIgnoreCase("Passenger")==false) )
 					{
+						flag = false;
 						System.out.println("Enter a valid input");
 					}
+					else
+					{      
+						flag = true;//invoking method to filter the list based on train type
+						output=objReservationSystem.getTrainsOfType(typeOfTrain);
+					}
 					
-				}while((output.size())==0);
+				}while(flag==false);
 				
-				object.displayAll(output);
-
+				int countTrainsBetweenStation=0;
 				do				//accepting input from user until valid input is entered
 				{
-					result="";
+					
 					System.out.println("Enter station journey From :");
 					from=sc.next();
 					System.out.println("To :");
 					to=sc.next();
-					result=object.trainBtwStations(from, to);		//invoking method to filter the list based on source and destination
-				}while(result.equals("")==true);
+					countTrainsBetweenStation=objReservationSystem.getTrainsBetweenStations(from, to);		//invoking method to filter the list based on source and destination
+					if(countTrainsBetweenStation==0)
+					{
+						System.out.println("No trains found between "+from+" and "+to);
+						System.out.println("Enter trains available in chart");
+					}
+					
+				}while(countTrainsBetweenStation==0);
 
 				do			//accepting input from user until valid input is entered
 				{
-					if(answer.equalsIgnoreCase("Passenger"))
+					if(typeOfTrain.equalsIgnoreCase("Passenger"))
 					{
-						System.out.println("Enter the id of train to be booked and number of seats");
+						System.out.println("Enter the id of train to be booked "); //and number of seats");
 						id=sc.nextInt();
+						System.out.println("Enter number of to be booked ");
 						seats=sc.nextInt();
-						price=object.reservation(id, seats);		//invoking method to return price of booked train
+						fare=objReservationSystem.reservation(id, seats);		//invoking method to return price of booked train
 					}
 					else
 					{
-						System.out.println("Enter the id of train to be booked and number of weight");
+						System.out.println("Enter the id of train to be booked ");
 						id=sc.nextInt();
+						System.out.println("Enter weight of to be booked ");
 						weight=sc.nextDouble();
-						price=object.reservation(id, weight);		//invoking method to return price of booked train
+						fare=objReservationSystem.reservation(id, weight);		//invoking method to return price of booked train
+					}
+					if(fare==0)
+					{
+						System.out.println("Enter valid id");
 					}
 
-				}while(price==0);
+				}while(fare==0);
 
 				do			//accepting input from user until valid input is entered
 				{
-					System.out.println("chose payment method\n\t1. credit card\n\t2. net banking");
+					System.out.println("chose payment method\n\t1. credit card\n\t2. net banking\n\t3.Wallet");
 					paymentMethod = sc.nextInt();
-					if(paymentMethod!=1 && paymentMethod!=2)
+					if(paymentMethod!=1 && paymentMethod!=2 && paymentMethod!=3)
 					{
 						System.out.println("Enter a valid input");
 					}
+					else
+					{
+						flag=true;
+					}
 					
-				}while(paymentMethod!=1 && paymentMethod!=2);
+				}while(flag == false);
 
 				switch(paymentMethod)
 				{
 				case 1:	
 					System.out.println("enter credit card details");
-					int cardNum = Utility.GetInput("enter card number");
-					int cvv = Utility.GetInput("enter CVV");
-					Payment testObj = new Payment();
+					System.out.println("enter card number");
+					String cardNum = sc.next();
+					System.out.println("enter cvv number");
+					String cvv = sc.next();
+					Payment objPaymentByCraditCard = new Payment();
 
-					bookingInformation bookingObject;
-					if(answer.equalsIgnoreCase("Passenger"))
+					if(typeOfTrain.equalsIgnoreCase("Passenger"))
 					{
-						amount = testObj.makePayment(seats, price);
-						bookingObject = new bookingInformation(user, String.valueOf(id) , String.valueOf(seats), amount);
+						amount = objPaymentByCraditCard.makePayment(seats, fare);
+						objReservationSystem.getbookingDetails(userName, String.valueOf(id) , String.valueOf(seats), amount);
 					}
 					else
 					{
-						amount = testObj.makePayment(weight, price);
-						bookingObject = new bookingInformation(user, String.valueOf(id) , String.valueOf(weight), amount);
+						amount = objPaymentByCraditCard.makePayment(weight, fare);
+						objReservationSystem.getbookingDetails(userName, String.valueOf(id) , String.valueOf(weight), amount);
 					}
-					bookingObject.bookingDetails();				//invoking function to display ticket details
+								//invoking function to display ticket details
 					break;
 
 				case 2:
@@ -112,35 +160,50 @@ public class travel {
 					int accNum = sc.nextInt();
 					System.out.println("enter password");
 					String pass = sc.next();
-					Payment testObj1 = new Payment();
+					Payment objPaymentByNetBanking = new Payment();
 
-					bookingInformation bookingObject1;
-					if(answer.equalsIgnoreCase("Passenger"))
+					if(typeOfTrain.equalsIgnoreCase("Passenger"))
 					{
-						amount = testObj1.makePayment(seats, price);
-						bookingObject1 = new bookingInformation(user, String.valueOf(id) , String.valueOf(seats), amount);
+						amount = objPaymentByNetBanking.makePayment(seats, fare);
+						objReservationSystem.getbookingDetails(userName, String.valueOf(id) , String.valueOf(seats), amount);
 					}
 					else
 					{
-						amount = testObj1.makePayment(weight, price);
-						bookingObject1 = new bookingInformation(user, String.valueOf(id) , String.valueOf(weight), amount);
+						amount = objPaymentByNetBanking.makePayment(weight, fare);
+						objReservationSystem.getbookingDetails(userName, String.valueOf(id) , String.valueOf(weight), amount);
 					}
-					bookingObject1.bookingDetails();  			//invoking function to display ticket details
 					break;
+					
+				case 3 : System.out.println("Cash payment");
+						 Payment objPaymentByWallet = new Payment();
+
+					if(typeOfTrain.equalsIgnoreCase("Passenger"))
+					{
+						amount = objPaymentByWallet.makePayment(seats, fare);
+						objReservationSystem.getbookingDetails(userName, String.valueOf(id) , String.valueOf(seats), amount);
+					}
+					else
+					{
+						amount = objPaymentByWallet.makePayment(weight, fare);
+						objReservationSystem.getbookingDetails(userName, String.valueOf(id) , String.valueOf(weight), amount);
+					}
 				}
+				
 				System.out.println("Updated Train chart");
-				object.update(trainInformation);
-				object.displayAll(trainInformation);
+				objReservationSystem.updateTrainChart(trainInformation);
+				objReservationSystem.displayTrainChart(trainInformation);
 
 				System.out.println("Want more booking press 0");
 				y=sc.nextInt();
 			}while(y==0);
 			
 		}
+		
 		//Catchs exception on entering invalid input
 		catch(Exception e)
 		{
-			System.out.println("Enter a valid input hiii");
+			System.out.println("Enter a valid input !!!!");
 		}
+		sc.close();
 	}
 }
