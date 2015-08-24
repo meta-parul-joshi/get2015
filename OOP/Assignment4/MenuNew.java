@@ -1,7 +1,7 @@
 public class MenuNew
 {
 	
-	MenuNew() 
+	public void showMenu()
 	{
 		menu menu = new menu();
 		actionableMenuItems item = new actionableMenuItems("Press 1 for Credit Card");

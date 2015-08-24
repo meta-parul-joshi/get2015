@@ -49,7 +49,7 @@ public class travel
 		String userName, typeOfTrain, journeyFrom, journeyTo;
 		reservationSystem objReservationSystem = new reservationSystem();					
 		objReservationSystem.sortingTrainChart(trainDetailsInformation);
-		int id, seats = 0, fare, paymentMethod, y = 0;
+		int id, seats = 0, fare, y = 0;
 		double weight = 0.0,amount = 0.0;
 		try
 		{
@@ -121,8 +121,8 @@ public class travel
 
 				}while(fare == 0);
 
-				
-				MenuNew object = new MenuNew();
+				MenuNew objectMenu = new MenuNew();
+				objectMenu.showMenu();
 				Payment objPaymentByNetBanking = new Payment();
 				if(typeOfTrain.equalsIgnoreCase("Passenger"))
 				{
