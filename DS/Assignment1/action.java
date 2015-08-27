@@ -1,0 +1,5 @@
+
+interface action 
+{
+	void perform();
+}
