@@ -1,5 +1,0 @@
-
-interface action 
-{
-	void perform();
-}
