@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class Utility 
 {
-	public static int getValue(String message)
+	public static int getIntegerValue(String message)
 	{
 		
 		Scanner sc=new Scanner(System.in);
@@ -14,6 +14,10 @@ public class Utility
 			{
 				number=Integer.parseInt(inputStr);
 				return number;
+			}
+			else
+			{
+				System.out.println("Enter positive integer value");
 			}
 		}while(true);
 	}
@@ -32,7 +36,7 @@ public class Utility
 		return true;	
 	}
 	
-	public static String getInput(String message)
+	public static String getStringInput(String message)
 	{
 		System.out.println(message);
 		Scanner sc=new Scanner(System.in);
