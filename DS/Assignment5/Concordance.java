@@ -4,44 +4,52 @@ import java.util.Set;
 public class Concordance 
 {
 	/** characterSet is set of characters of given string */
-	private Set<Character> characterSet = new HashSet<Character>();
+	
 
-	private void readCharacters(String string) 
+	private Set<Character> readCharacters(char[] charArray) 
 	{
 		
-		/* input string is converted into a character array */
-		char[] charArray = string.toCharArray();
-		
+		Set<Character> characterSet = new HashSet<Character>();
 		/* character array is traversed using for each loop
-		 * and charaters are added to characterSet (Repeated characters
+		 * and characters are added to characterSet (Repeated characters
 		 * will not be stored)
 		 */
-		for(char c : charArray)
+		for(Character c : charArray)
 		{
-			if(c != ' ')
 			characterSet.add(c);
-		}		
+		}	
+		
+		return characterSet;
 	}
+	
 	
 	
 	/** Method to find concordance of characters in a string
 	 * 
 	 * @param string : input String
 	 */
-	public void findConcordance(String string) 
+	public void findConcordance(String[] arrayOfString) 
 	{
+		String str="";
+		
+		for(int i = 0 ; i < arrayOfString.length  ; i++)
+		{
+			str = str + arrayOfString[i];
+		}
+		
+		char[] charArray = str.toCharArray();
+		
+		Set<Character> characterSet = new HashSet<Character>();
 		/* Internally calling readCharacters() */
-		readCharacters(string);
-		int index = 0;
-		for (char c : characterSet)
+		characterSet = readCharacters(charArray);
+		for (Character c : characterSet)
 		{
 			System.out.print(c+"[");
-			for(int i =0 ; i < string.length() ; i++)
+			for(int i = 0 ; i < charArray.length  ; i++)
 			{
-				if(string.charAt(i) == c)
+				if(charArray[i] == c)
 				{
-				  index = i; 
-				  System.out.print(index+" ");
+				  System.out.print(i+" ");
 				}	
 			}
 			
@@ -49,4 +57,3 @@ public class Concordance
 		}
 	}
 }
-
