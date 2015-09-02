@@ -29,34 +29,32 @@ public class BinarySearch
 						
 				case 2:sizeOfArray = objectOfbiBinarySearch.getSize();
 					if(sizeOfArray == 0)
-						{
-							System.out.println("Array is empty");
-						}
-						else/*Input number to be search from user.*/ 
-						{
-							
-							int numberToSearch = Utility.getIntegerValue("Enter number to be search");
-							int position=objectOfbiBinarySearch.binarySearch(numberToSearch,objectOfbiBinarySearch.getArray());
+					{
+						System.out.println("Array is empty");
+					}
+					else/*Input number to be search from user.*/ 
+					{
+						int numberToSearch = Utility.getIntegerValue("Enter number to be search");
+						int position=objectOfbiBinarySearch.binarySearch(numberToSearch,objectOfbiBinarySearch.getArray());
 						   
-							/*If number exist in array print its location.*/
-							if(position>=0)
-							{
-								System.out.println("Left most location of number "+numberToSearch+" is "+position);
-							}
-							/*Element does not exist in array.*/
-							else
-							{
-								System.out.println("Number does not exist in array");
-							}
+						/*If number exist in array print its location.*/
+						if(position>=0)
+						{
+							System.out.println("Left most location of number "+numberToSearch+" is "+position);
 						}
-						break;
+						/*Element does not exist in array.*/
+						else
+						{
+							System.out.println("Number does not exist in array");
+						}
+					}
+					break;
 						
 				case 3 : System.out.println("System exited");
 						System.exit(0);
 						break;
 				default: System.out.println("Wrong choice...!!");
 							break;
-				
 			}
 		
 			/*Display array.*/
