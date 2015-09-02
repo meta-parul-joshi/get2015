@@ -1,6 +1,4 @@
 import java.util.Scanner;
-
-
 public class Utility 
 {
 	public static int getIntegerValue(String message)
@@ -17,7 +15,10 @@ public class Utility
 				number=Integer.parseInt(inputStr);
 				return number;
 			}
-			
+			else
+			{
+				System.out.println("Enter positive integer value");
+			}
 		}while(true);
 	}
 	
@@ -41,6 +42,5 @@ public class Utility
 		Scanner sc=new Scanner(System.in);
 		String inputStr = sc.nextLine();
 		return inputStr;
-	}
-	
+	}	
 }
