@@ -11,11 +11,7 @@ public class EmployeeCollectionMain
 			
 		/*list to store details of all employee**/
 		List<Employee<Object>> employeeList = new ArrayList<Employee<Object>>();
-//		employeeList.add( new Employee<Object> ("Manish", 11, "Mansarover  Jaipur") );
-//		employeeList.add( new Employee<Object> ("Parul", 12, "Pratap Nagar  Jaipur") );
-//		employeeList.add( new Employee<Object> ("Puneet", 13, "MalviyaNagar  Jaipur") );
-//		employeeList.add( new Employee<Object> ("Hemant", 14, "Vaishali nagar  Jaipur") );
-		
+	
 		while (true)
 		{	
 			/*Show menu to user.*/
@@ -30,6 +26,7 @@ public class EmployeeCollectionMain
 			
 			switch (choice)
 			{
+						/*Input employee details and add into Employee list.**/
 				case 1 : String name = Utility.getStringInput("\nEnter employee name : ");
 						 int id = Utility.getIntegerValue("\nEnter employee id : ");
 						 String address = Utility.getStringInput("\nEnter employee address : ");
@@ -44,6 +41,7 @@ public class EmployeeCollectionMain
 								 break;
 							 }
 						 }
+						 
 						 if ( flag == false )
 						 {
 							 employeeList.add(objEmpoyee);
@@ -51,32 +49,35 @@ public class EmployeeCollectionMain
 						 }
 						 break;
 						
+						 /*Sorting in natural order.*/
 				case 2 : if(employeeList.size()==0)
 						 {
 						    System.out.println("No employee in company");
-													 }
+						 }
 						 else
 						 {
-							 Collections.sort( employeeList );
+							 Collections.sort( employeeList ,new EmpIoyeeIdComparator());
 							 System.out.println("Sort in Natural order");
 							 System.out.println(employeeList);
 						 }
 						 break;
 						 
-				case 3: 
-					if(employeeList.size()==0)
-					 {
-					    System.out.println("No employee in company");
-					 }
-					else
-					{
-						Collections.sort ( employeeList, new EmpNameComparator() );
-						System.out.println ( "Sort using emp name Comparator");
-						System.out.println (employeeList );
-					}
-					break;
+						 /**Sort by name*/
+				case 3: if(employeeList.size()==0)
+					 	{
+					    	System.out.println("No employee in company");
+					 	}
+						else
+						{
+							Collections.sort ( employeeList );
+							System.out.println ( "Sort using emp name Comparator");
+							System.out.println (employeeList );
+						}
+						break;
 						 
-				case 4 : System.exit(0);
+						/*Exit*/
+				case 4 :System.out.println("System exited"); 
+						System.exit(0);
 				 		 break;
 				
 				default : System.out.println("Please enter correct choice");

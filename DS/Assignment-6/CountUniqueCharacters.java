@@ -15,13 +15,8 @@ public class CountUniqueCharacters
 	 * using Set<Character and return number of unique character. */
 	public int countUniqueCharacterInString(String inputString)
 	{ 
-		
 	     boolean flag = checkCache(inputString);
-	     if(flag)
-	     {
-	    	return getUniqueCharacter(inputString);
-	     }
-	     else
+	     if(!flag)
 	     {	 
 		    /*Convert string into character array using function toCharArray().**/
 		    char[] charArray = inputString.toCharArray();
@@ -36,17 +31,21 @@ public class CountUniqueCharacters
 		    	}
 		    }
 		     
-		    int numberOfCharacterInSet = characterSet.size();
-		    
 		    /*Insert string in map **/
 		    objectMap.put(inputString,characterSet);
-		    /*return number of unique characters.*/
-			return numberOfCharacterInSet;
-	     }   
+		    /*return number of unique characters.*/	
+	     } 
+	     
+	     return getUniqueCharacter(inputString);
 	}
 	
+	/*Function checks cache that key exists in map or not.
+	 * It takes inputString as parameter.
+	 * It returns true if element exist in map or vice-versa.
+	 * */
 	private boolean checkCache(String inputString)
 	{
+		boolean flag = false;
 		/*Iterator to traverse in map.*/
 	    Iterator<Map.Entry<String, Set<Character>>> iterator = objectMap.entrySet().iterator();
 	    
@@ -59,13 +58,17 @@ public class CountUniqueCharacters
 	    	/*Check string exist in map.*/
 	    	if(me.getKey().equals(inputString))
 	    	{
-	    		return true;
+	    		break;
 	    	}
 	   	}
 	    
-	    return false;	 
+	    return flag;
+	  
 	}
 	
+	/*Function returns number of characters in inputString.
+	 * It takes inputString as parameter.
+	 */
 	private int getUniqueCharacter(String inputString)
 	{
 		int numberOfUniqueCharacter = 0; 

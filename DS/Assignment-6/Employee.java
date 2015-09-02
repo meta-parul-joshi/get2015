@@ -61,9 +61,10 @@ public class Employee<T> implements Comparable<T>
 	// Implement the natural order for this class
 	public int compareTo ( Object object )
 	{
-		return getEmployeeId().compareTo(((Employee)object).getEmployeeId());
+		return getEmployeeName().compareTo(((Employee)object).getEmployeeName());
 	}
-
+	
+	/**Override hashcode() method of Object class.*/
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,7 +73,8 @@ public class Employee<T> implements Comparable<T>
 				+ ((employeeId == null) ? 0 : employeeId.hashCode());
 		return result;
 	}
-
+	
+	/*Override equals() methods of object class.**/
 	@Override
 	public boolean equals(Object obj) 
 	{
