@@ -1,14 +1,11 @@
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.AfterClass;
 import org.junit.Test;
 
-
-public class SortingStudentDataUsingTreeSortTest {
-
+public class SortingStudentDataUsingTreeSortTest 
+{
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
