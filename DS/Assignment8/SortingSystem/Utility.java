@@ -1,4 +1,7 @@
+package SortingSystem;
+
 import java.util.Scanner;
+
 public class Utility 
 {
 	public static int getIntegerValue(String message)
@@ -42,6 +45,11 @@ public class Utility
 		Scanner sc=new Scanner(System.in);
 		String inputStr = sc.nextLine();
 		return inputStr;
-	}	
-}
+	}
+	
+	public static void showMessage(String message)
+	{
+		System.out.println(message);
+	}
 
+}
