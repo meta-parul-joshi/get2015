@@ -14,6 +14,12 @@ public class SortingStudentDataUsingTreeSort
 	List<StudentNode> studentList = new ArrayList<StudentNode>();
 	int numberOfStudent;
 	
+	/*Constructor.*/
+    public SortingStudentDataUsingTreeSort()
+    {
+    	root = null;
+    }
+    
 	/*Function to get number of student*/
 	public int getNumberOfStudent() {
 		return numberOfStudent;
@@ -26,19 +32,20 @@ public class SortingStudentDataUsingTreeSort
 		this.numberOfStudent = numberOfStudent;
 	}
 
-    public SortingStudentDataUsingTreeSort()
-    {
-    	root = null;
-    }
-    
+    /*Function to get root of tree.*/
     public StudentNode returnRoot()
     {
         return root;
     }
     
+    /*Function to insert node in tree.
+     * It takes a StudentNode as key parameter.
+     * if tree is empty it puts node as root node otherwise it checks roll of of new node to root node
+     * if its is less than root it moves to left and check empty condition if true place node or move again.
+     * If roll number of new node is larger than root it moves in right.*/
     public void insert(StudentNode objectOfStudent)
     {
-        StudentNode newStudentNode = new StudentNode(objectOfStudent.item.rollnumber,objectOfStudent.item.studentName);
+        StudentNode newStudentNode = new StudentNode(objectOfStudent.student.rollnumber,objectOfStudent.student.studentName);
         if(root==null)
         {
         	root = newStudentNode;
@@ -50,11 +57,11 @@ public class SortingStudentDataUsingTreeSort
             while(true)
             {
                 parent = current;
-                if(objectOfStudent.item.getRollnumber() == current.item.getRollnumber())
+                if(objectOfStudent.student.getRollnumber() == current.student.getRollnumber())
                 {
                 	return;
                 }
-                else if(objectOfStudent.item.getRollnumber() < current.item.getRollnumber())
+                else if(objectOfStudent.student.getRollnumber() < current.student.getRollnumber())
                 {
                     current = current.leftChild;
                     if(current == null)
@@ -76,6 +83,8 @@ public class SortingStudentDataUsingTreeSort
         }
     } 
      
+    /*Function traverse tree in inOrder.
+     * It takes root node of tree as key parameter.*/
     public void inOrder(StudentNode root)
     {
         Stack<StudentNode> objectStack = new Stack<StudentNode>();
@@ -97,6 +106,7 @@ public class SortingStudentDataUsingTreeSort
         }
     }
     
+    /*Function to print Tree.*/
     public void printStudentData()
     {
     	System.out.println("Student name\tRoll number");

@@ -57,7 +57,7 @@ public class SortingStudentMain
 				
 				default : System.out.println("Wrong choice");
 							break;						
-			}			
+			}	
 		}
 	}
 }
