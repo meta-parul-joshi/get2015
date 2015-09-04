@@ -114,6 +114,7 @@ public class SortingStudentDataUsingTreeSort
     	{
     		System.out.println(student);
     	}
+    	studentList.clear();
     }
     
  }

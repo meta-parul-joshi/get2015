@@ -178,7 +178,7 @@ public class SortingSystem implements iSortingSystem
 		}
 	}
 	
-	/*Function perform counting sort
+	/*Function perform counting sort.
 	 * It takes maximum as key parameter.
 	 * */
 	private void radixSort(int maximum)
@@ -223,7 +223,7 @@ public class SortingSystem implements iSortingSystem
 		}
 		else
 		{	
-			System.out.println("\nSorted Array is - ");
+			System.out.println("\nArray is - ");
 			for(int i=0;i<array.length;i++)
 			{
 				System.out.print(array[i]+" ");

@@ -20,7 +20,7 @@ public class SortingSystemMain
 			/*Show menu to user.*/
 			System.out.println("\n\nMenu : ");
 			System.out.println("1). Create array");
-			System.out.println("2). Comparision sort");
+			System.out.println("2). Comparison sort");
 			System.out.println("3). Linear sort");
 			System.out.println("4). Exit");
 			

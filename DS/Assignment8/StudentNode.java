@@ -43,7 +43,7 @@ public class StudentNode
 		this.leftChild = leftChild;
 	}
 	
-	/*Functon to get right child of node.*/
+	/*Function to get right child of node.*/
 	public StudentNode getRightChild() 
 	{
 		return rightChild;

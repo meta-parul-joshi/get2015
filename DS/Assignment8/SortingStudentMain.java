@@ -9,7 +9,6 @@ public class SortingStudentMain
 		
 		/*Initialize object of class to call function of class.*/
 		SortingStudentDataUsingTreeSort objectStudentDataUsingTreeSort = new SortingStudentDataUsingTreeSort();
-		//List<Student> listStudents = new ArrayList<Student>();
 		
 		while(true)
 		{
