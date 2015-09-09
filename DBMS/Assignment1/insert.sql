@@ -17,9 +17,8 @@ SELECT* FROM author;
 INSERT INTO titles VALUES(1,"Complete reference",1,1);
 INSERT INTO titles VALUES(2,"Reference",2,2);
 SELECT* FROM titles;
-
-INSERT INTO Book VALUES(1,100,"A",1);
-INSERT INTO Book VALUES(2,200,"N",2);
+INSERT INTO Book VALUES(1,100,1,1);
+INSERT INTO Book VALUES(2,200,0,2);
 SELECT* FROM Book;
 
 INSERT INTO title_author VALUES(1,1);
@@ -42,6 +41,6 @@ SELECT* FROM members;
 
 SET SQL_SAFE_UPDATES = 0;
 UPDATE members 
-SET address_linE1 = "EPIP SITAPURA"
+SET address_line1 = "EPIP SITAPURA"
 WHERE category = "F";
 SELECT* FROM members;

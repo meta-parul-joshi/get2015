@@ -6,8 +6,8 @@ CREATE TABLE IF NOT EXISTS Members(
 member_Id INT NOT NULL AUTO_INCREMENT,
 member_name VARCHAR(30),
 address_line1 VARCHAR(30),
-address_linr2 VARCHAR(30),   
-category CHAR(1),
+address_line2 VARCHAR(30),   
+category CHAR(1) CHECK(category IN('M','F')),
 PRIMARY KEY (member_Id)
 );
 
@@ -40,7 +40,7 @@ ON DELETE CASCADE ON UPDATE CASCADE);
 CREATE TABLE IF NOT EXISTS Book(
 accession_number INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 price INT NOT NULL,
-status CHAR(1) NOT NULL,
+status BIT(1) CHECK(BIT IN('1','0')),
 title_Id INT NOT NULL,
 FOREIGN KEY (title_Id)
 REFERENCES titles(title_Id)

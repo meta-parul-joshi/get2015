@@ -1,8 +1,8 @@
 ALTER TABLE titles DROP FOREIGN KEY  `publisher_id_title` ;
 
-TRUNCATE TABLE publishers;
+Delete From publishers;
 SELECT* FROM publishers;
-SELECT * FROM titles;
+
 
 DELETE FROM titles WHERE publisher_Id = 1;
 SELECT * FROM titles;
