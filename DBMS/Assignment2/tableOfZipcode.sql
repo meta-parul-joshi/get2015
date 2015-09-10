@@ -1,30 +1,36 @@
 -- Creating Database zipcodeInfo
-CREATE DATABASE zipcodeInfo;
+CREATE DATABASE IF NOT EXISTS zipcodeInfo;
+
 USE zipcodeInfo;
 
--- creating table Zipcode
- CREATE TABLE zipcodeNumber
+-- Creating table stateInfo
+CREATE TABLE IF NOT EXISTS stateInfo
 (
-zipcode int PRIMARY KEY AUTO_INCREMENT
+    stateId INT NOT NULL AUTO_INCREMENT PRIMARY kEY,
+    stateName varchar(100)
 );
 
 -- Creating table cityInfo
-CREATE TABLE cityInfo
+CREATE TABLE IF NOT EXISTS cityInfo
 (
-zipcode int AUTO_INCREMENT,
-cityName varchar(20),
-PRIMARY KEY (zipcode,cityName),
-FOREIGN KEY (zipcode) REFERENCES zipcodeNumber(zipcode) 
+    cityId INT NOT NULL AUTO_INCREMENT,
+    cityName varchar(100),
+    stateId INT NOT NULL,
+    PRIMARY KEY (cityId),
+    FOREIGN KEY (stateId) REFERENCES stateInfo(stateId) 
 );
 
--- Creating table stateInfo
-CREATE TABLE stateInfo
+-- creating table Zipcode
+CREATE TABLE IF NOT EXISTS zipcodeNumber
 (
-zipcode int AUTO_INCREMENT ,
-stateName varchar(20),
-PRIMARY KEY (zipcode,stateName),
-FOREIGN KEY (zipcode) REFERENCES zipcodeNumber(zipcode) 
+    zipId INT NOT NULL AUTO_INCREMENT,
+    zipcode INT NOT NULL,
+    cityId INT NOT NULL,
+    PRIMARY KEY (zipId),
+    FOREIGN KEY (cityId) REFERENCES cityInfo(cityId)
 );
+
+
  
 
  

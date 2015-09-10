@@ -2,9 +2,9 @@ USE Library_Information_System;
 
 SELECT * FROM members;
 
-INSERT INTO Members VALUES (1,"Parul","Sector 13","Udaipur","F");
-INSERT INTO Members VALUES (2,"Manish","Sector 14","Kota","M");
-INSERT INTO Members VALUES (3,"Hemant","Sector 14","Kota","F");
+INSERT INTO Members VALUES (3,"Parul","Sector 13","Udaipur","F");
+INSERT INTO Members VALUES (4,"Manish","Sector 14","Kota","M");
+INSERT INTO Members VALUES (5,"Hemant","Sector 14","Kota","F");
 
 SELECT * FROM members;
 
@@ -30,14 +30,16 @@ FROM Members m
 INNER JOIN Members m1 ON m.category=m1.category 
 AND m1.member_name="Keshav Sharma";
 
-SET SQL_SAFE_UPDATES = 0;
-UPDATE book_return 
-SET return_date = "0000-00-00 00:00:00"
-WHERE accession_number = "1";
 
-SELECT accession_number AS Acc_no ,member_id AS Mem_id,issue_date AS Iss_d,return_date AS Ret_d FROM book_return;
+SELECT b.accession_number,b.member_id,b.issue_date,IFNULL(r.return_date,"  ")  as returnDate 
+FROM book_issue b
+LEFT outer JOIN book_return r ON b.accession_number = r.accession_number AND b.member_Id= r.member_Id;
 
-SELECT m.member_name as m_name,b.accession_number AS Acc_no ,b.member_id AS Mem_id, b.issue_date AS Iss_d,b.return_date AS Ret_d 
-FROM book_return b INNER JOIN members m  ON m.member_id = b.member_id ORDER BY issue_date , m.member_name;
+SELECT b.issue_date,b.accession_number,b.member_id,IFNULL(r.return_date,"") as Return_Date ,m.member_name
+FROM book_issue b
+LEFT OUTER Join book_return r ON 
+b.accession_number = r.accession_number AND 
+b.member_id= r.member_id 
+INNER JOIN members m ON m.member_id = b.member_id ORDER BY m.member_name , issue_date; 
 
 
