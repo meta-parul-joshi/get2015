@@ -2,15 +2,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionUtil {
+public final class ConnectionUtil {
 
 	private static final String DB_URL = "jdbc:mysql://localhost:3306/Library_Information_System";
 	private static final String USER = "root";
 	private static final String PASSWORD = "mysql";
 			
-	private Connection con = null;
+	private static Connection con = null;
 	
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		
 		/* register driver */
 		try {
@@ -31,3 +31,7 @@ public class ConnectionUtil {
 	}
 	
 }
+
+
+
+
