@@ -1,7 +1,5 @@
 import java.text.ParseException;
 import SortingSystem.Utility;
-
-
 public class MainFile 
 {
 	public static void main(String[] args) throws ParseException 
@@ -24,39 +22,39 @@ public class MainFile
 			{
 						/*Take input author name from user and displays books written by author.*/
 				case 1 :String authorName = Utility.getStringInput("Enter author name");
-						List<Title> titleList=new ArrayList<Title>();
-						titleList = objectOfInformationSystemHelper.booksPublishedByAuthor(authorName);
-						printListOFBooks(titleList);
-						break;
+					List<Title> titleList=new ArrayList<Title>();
+					titleList = objectOfInformationSystemHelper.booksPublishedByAuthor(authorName);
+					printListOFBooks(titleList);
+					break;
 						
-						/*Take book name and member name as input and display whether book issued or not*/
+					/*Take book name and member name as input and display whether book issued or not*/
 				case 2:String bookName = Utility.getStringInput("Enter name of book to be isssued");
-						System.out.println("\nEnter member details :");		
-						String name = Utility.getStringInput("Enter member name");
-						boolean flag = objectOfInformationSystemHelper.bookIssuedOrNot( bookName,name);	
-						if(flag == true)
-						{
-							System.out.println("Book issued successfully");
-						}
-						else
-						{
-							System.out.println("Book not issued");
-						}	
-						break;
+					System.out.println("\nEnter member details :");		
+					String name = Utility.getStringInput("Enter member name");
+					boolean flag = objectOfInformationSystemHelper.bookIssuedOrNot( bookName,name);	
+					if(flag == true)
+					{
+						System.out.println("Book issued successfully");
+					}
+					else
+					{
+						System.out.println("Book not issued");
+					}	
+					break;
 						
-						/*Remove books from library that aer not issued since last one yea*/
+					/*Remove books from library that aer not issued since last one yea*/
 				case 3: int numberOfBooksDeleted = objectOfInformationSystemHelper.removeBooksFromThatAreNotIssuedSinceLasttYear();
-						System.out.println("Number of books deleted - " + numberOfBooksDeleted);
-						break;
+					System.out.println("Number of books deleted - " + numberOfBooksDeleted);
+					break;
 						
-						/*Exit.*/
+					/*Exit.*/
 				case 4 : System.out.println("System exited ");
-						System.exit(0);
-						break;
+					System.exit(0);
+					break;
 						
-						/*Default case.*/
+					/*Default case.*/
 				default : System.out.println("Wrong Choice...!!");
-							break;
+					break;
 			}
 		}
 	}
