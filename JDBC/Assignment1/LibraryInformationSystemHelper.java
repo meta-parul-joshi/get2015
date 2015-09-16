@@ -3,46 +3,97 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class LibraryInformationSystemHelper 
-{
-	List<Book> bookList=new ArrayList<Book>();
-	
-	/* execute query using statement*/
-	private void booksPublishedByAuthor(String authorName) throws ParseException 
-	{		
-		DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-		Book b=null;
-		String query = "select b.* from book b inner join titles t on b.title_id=t.title_id "
-							+ "inner join title_author ta on ta.title_id=t.title_id inner join author a on"
-								+ " a.author_id=ta.author_id where author_name='"+authorName+"'";
-		Connection con = null;
+{	
+	/* Function select books published by author and store them in list.
+	 * It takes authorName as key parameter.
+	 * It returns list of books.*/
+	List<Title> booksPublishedByAuthor(String authorName) 
+	{
+		List<Title> titleList=new ArrayList<Title>();
+		String query = " SELECT t.* FROM titles t  "
+				+ " INNER JOIN title_author ta ON ta.title_id = t.title_id INNER JOIN author a ON "
+				+ " a.author_id = ta.author_id WHERE author_name = '"
+				+ authorName + "' ";		
 		ResultSet rs = null;
 		Statement stmt = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();
+		
+		/*Connection open.*/
+		Connection con = ConnectionUtil.getConnection();
 		try 
 		{
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				b=new Book();
-				b.setAccessionNumber(Integer.parseInt(rs.getString(1)));
-				b.setPrice(Integer.parseInt(rs.getString(2)));
-				b.setStatus(rs.getString(3));
-				b.setPrice(Integer.parseInt(rs.getString(4)));
-				Date startDate= (java.util.Date) df.parse(rs.getString(5));
-				b.setPurchaseDate(startDate);	
-				bookList.add(b);
-			}
-			
+				Title t=new Title();
+				t.setTitleId(Integer.parseInt(rs.getString(1)));
+				t.setTitleName(rs.getString(2));
+				t.setSubjectId(Integer.parseInt(rs.getString(3)));
+				t.setPublisherId(Integer.parseInt(rs.getString(4)));
+				titleList.add(t);
+			}	
 		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally 
+		{
+			/* close connection */
+			try 
+			{
+				if (con != null) {
+					con.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+			} 
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
+		}
+
+		return titleList;
+	}
+	
+	/*Function checks book issued to member or not
+	 * It takes bookName and member name as key parameter.
+	 * It return a flag that implies book issued or not.*/
+	public boolean bookIssuedOrNot(String bookName,String memberName)
+	{
+		boolean flag = false;
+		String query ="SELECT accession_number FROM book WHERE title_Id = (SELECT title_Id FROM titles WHERE title_name = '" + bookName + "' ) " ;
+		ResultSet rs = null;
+		Statement stmt = null;
+		
+		/*Connection open.*/
+		Connection con = ConnectionUtil.getConnection();
+		try 
+		{
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+
+			while (rs.next()) 
+			{
+				int accessionNumber= 0;
+				accessionNumber = Integer.parseInt(rs.getString(1));
+				int id = getIdOfMember(memberName);
+				if(id != 0 && accessionNumber != 0)
+				{
+					issueBookToMember(accessionNumber, id);
+					flag = true;
+				}
+			}
+
+		}
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -67,222 +118,22 @@ public class LibraryInformationSystemHelper
 			{
 				e.printStackTrace();
 			}
-		}
-		
-		printListOFBooks();
-	}
-	
-	public boolean checkAuthorExist(String authorName) throws ParseException
-	{
-		boolean authorExist = true;
-		String query ="select author_Id From author where author_name = '"+authorName+"'";
-		Connection con = null;
-		ResultSet rs = null;
-		Statement stmt = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();
-		try 
-		{
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
-			if(rs.next()== false)
-			{
-				authorExist = false;
-			}
-			else
-			{
-				booksPublishedByAuthor(authorName);
-			}
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		finally 	
-		{
-			/* close connection */
-			try 
-			{
-				if (con != null) 
-				{
-				con.close();
-				}
-				if (stmt != null) 
-				{
-				stmt.close();
-				}
-			} 	
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		}
-		
-		return authorExist;
-	}
-	
-	private void printListOFBooks()
-	{
-		for(Book s : bookList)
-		{
-			System.out.println(s.getAccessionNumber()+"\t"+s.getTitleId()
-					+"\t"+s.getPurchaseDate()+"\t"+s.getPrice()+"\t"+s.getStatus());
-		}
-	}
-		
-	public boolean bookIssuedOrNot(Members objMembers,String bookName) 
-	{
-		boolean flag = false;
-		addMemberInlibrary(objMembers);	
-		int id = getIdOfMember(objMembers);
-		int accessionNumber = getAccessionNumberOfBook(bookName); 
-		String query = "insert into book_issue(accession_number,member_Id) values ( "+accessionNumber
-							+","+id+")";
-		Connection con = null;
-		Statement stmt = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();				
-		try 
-		{
-			stmt = con.createStatement();
-			stmt.executeUpdate(query);
-			flag = true;
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		finally 	
-		{
-			/* close connection */
-			try 
-			{
-				if (con != null) 
-				{
-					con.close();
-				}
-				if (stmt != null) 
-				{
-					stmt.close();
-					}
-				} 	
-				catch (SQLException e)
-				{
-					e.printStackTrace();
-				}
-			}
-		
+		}	
+
 		return flag;
 	}
 	
-	int getAccessionNumberOfBook(String bookName)
+	/*Function issues book to member.
+	 * It takes accessionNumber and id as key parameter.*/
+	private void issueBookToMember(int accessionNumber,int id) 
 	{
-		int accessionNumber= 0;
-		String query ="select accession_number From book where title_Id = (Select title_Id from titles where title_name = '"+bookName+"')";
-		Connection con = null;
-		ResultSet rs = null;
-		Statement stmt = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();
-		try 
-		{
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
-			if(rs.next()== false);
-			else
-			{
-				accessionNumber = Integer.parseInt(rs.getString(1));
-			}
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		finally 
-		{
-			/* close connection */
-			try 
-			{
-				if (con != null) {
-					con.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
+		String query = "INSERT INTO book_issue( accession_number , member_Id ) VALUES ( " + accessionNumber
+				+ " , " + id + " ) ";
 
-			} 
-			catch (SQLException e) 
-			{
-				e.printStackTrace();
-			}
-		}		
-				
-				
-		return accessionNumber;
-	}
-		
-	boolean checkBookInLibrary(String bookName)
-	{
-		boolean bookExist = true;
-		String query ="select accession_number From book where title_Id = (Select title_Id from titles where title_name = '"+bookName+"')";
-		Connection con = null;
-		ResultSet rs = null;
 		Statement stmt = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();
-		try 
-		{
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(query);
-			if(rs.next()== false)
-			{
-				bookExist = false;
-			}
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		finally 
-		{
-			/* close connection */
-			try 
-			{
-				if (con != null) {
-					con.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-				if (rs != null) {
-					rs.close();
-				}
-
-			} 
-			catch (SQLException e) 
-			{
-				e.printStackTrace();
-			}
-		}
 		
-		return bookExist;
-	}
-	
-	private void addMemberInlibrary(Members objectMembers)
-	{
-		String query = "insert into Members(member_name,address_line1,address_linr2,category) values ('"
-							+objectMembers.getMemberName()+
-								"','"+objectMembers.getAddressLine1()
-									+"','"+objectMembers.getAddressLine2()+"','"
-											+objectMembers.getCategory()+"')";
-			
-		Connection con = null;
-		Statement stmt = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();
+		/*Connection open.*/
+		Connection con = ConnectionUtil.getConnection();				
 		try 
 		{
 			stmt = con.createStatement();
@@ -310,27 +161,34 @@ public class LibraryInformationSystemHelper
 			{
 				e.printStackTrace();
 			}
-		}			
+		}
+
 	}
-	
-	private int getIdOfMember(Members objMembers)
+
+	/*Function to get member id of existing member.
+	 * It take memberName as parameter.*/
+	private int getIdOfMember(String memberName)
 	{
 		int id = 0;
-		String query = "select member_Id from Members where member_name = '"+objMembers.getMemberName()+"'";
-		Connection con = null;
+		String query = "SELECT member_Id FROM Members WHERE member_name = '"+memberName+"'";
 		ResultSet rs = null;
 		Statement stmt = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();
+		
+		/*Connection open.*/
+		Connection con = ConnectionUtil.getConnection();
 		try 
 		{
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
-			while (rs.next()) 
+			if(rs.wasNull());
+			else
 			{
-				id = Integer.parseInt(rs.getString(1));
-			}
+				while (rs.next()) 
 
+				{
+					id = Integer.parseInt(rs.getString(1));
+				}
+			}
 		}
 		catch (SQLException e) 
 		{
@@ -356,59 +214,51 @@ public class LibraryInformationSystemHelper
 				e.printStackTrace();
 			}
 		}
-		
+
 		return id;
 	}
-	
-	public void showMembers()
+
+	/*Function to remove books from library which are not issued since last one year.
+	 * it return number of books deleted.*/
+	public int removeBooksFromThatAreNotIssuedSinceLasttYear() 
 	{
-		String query1 = "select * from Members";
-		Connection con = null;
+		int count = 0;
+		String query = "DELETE b FROM book b LEFT JOIN book_issue bi  ON b.accession_number = bi.accession_number "
+				+"WHERE ( DATEDIFF(NOW(),issue_date)>=365 OR (b.accession_number NOT IN(SELECT accession_number from book_issue) AND (status !=0)))";
+
 		Statement stmt = null;
-		ResultSet rs = null;
-		ConnectionUtil conUtil = new ConnectionUtil();
-		con = conUtil.getConnection();
+		
+		/*Connection open.*/
+		Connection con = ConnectionUtil.getConnection();				
 		try 
 		{
 			stmt = con.createStatement();
-			rs = stmt.executeQuery(query1);
-			while (rs.next()) 
-			{
-				System.out.println(rs.getString(1) + "\t" + rs.getString(2)+ "\t" +rs.getString(3) + "\t" + rs.getString(4)+ "\t" + rs.getString(5));
-			}
-			
+			count = stmt.executeUpdate(query);
+			System.out.println("Count "+ count);
 		}
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
-		} 
-		finally 
+		}
+		finally 	
 		{
 			/* close connection */
 			try 
 			{
-				if (con != null) {
+				if (con != null) 
+				{
 					con.close();
 				}
-				if (stmt != null) {
+				if (stmt != null) 
+				{
 					stmt.close();
 				}
-				if (rs != null) {
-					rs.close();
-				}
-			} 
-			catch (SQLException e) 
+			} 	
+			catch (SQLException e)
 			{
 				e.printStackTrace();
 			}
 		}
+		return count;
 	}
 }
-
-	
-	
-	
-	
-	
-	
-
