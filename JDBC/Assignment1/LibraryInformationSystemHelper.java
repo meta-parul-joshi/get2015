@@ -80,7 +80,6 @@ public class LibraryInformationSystemHelper
 		{
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
-
 			while (rs.next()) 
 			{
 				int accessionNumber= 0;
@@ -92,7 +91,6 @@ public class LibraryInformationSystemHelper
 					flag = true;
 				}
 			}
-
 		}
 		catch (SQLException e) 
 		{
@@ -180,14 +178,9 @@ public class LibraryInformationSystemHelper
 		{
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
-			if(rs.wasNull());
-			else
+			while (rs.next()) 
 			{
-				while (rs.next()) 
-
-				{
-					id = Integer.parseInt(rs.getString(1));
-				}
+				id = Integer.parseInt(rs.getString(1));
 			}
 		}
 		catch (SQLException e) 
