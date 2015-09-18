@@ -62,5 +62,11 @@ public class Car extends Vehicle
 	public void setPowerSteering(boolean isPowerSteering) {
 		this.isPowerSteering = isPowerSteering;
 	}
+	
+	@Override
+	public double calculateOnRoadPrice()
+	{
+		return super.calculateOnRoadPrice() + 500;
+	}
 }
 
