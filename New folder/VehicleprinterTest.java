@@ -25,13 +25,21 @@ public class VehicleprinterTest {
 	}
 
 	@Test
-	// Test for vehiclePrinter class
-	public void test() {
+	// Test for vehiclePrinter class for car
+	public void testprintVehicleSpecificationForCar() {
 		// checking for print result
-		String object2 = "make:Verna,model:verna23";
-		String object1 = VehiclePrinter.printVehicleSpecification(VehicleHelper
-				.createVehicle("Car", "Verna", "verna23"));
-		assertEquals(object1, object2);
+		String expectedCarDeatils = "make:Verna,model:verna23";
+		Vehicle objectCar= VehicleHelper.createVehicle("Car", "Verna", "verna23");
+		String actualCarDetails = VehiclePrinter.printVehicleSpecification(objectCar);
+		assertEquals(expectedCarDeatils,actualCarDetails);
 	}
-
+	
+	@Test
+	// Test for vehiclePrinter class for bike
+	public void testprintVehicleSpecificationForBike() {
+		String expectedBikeDeatils = "make:Hero,model:Dream yuga";
+		Vehicle objectBike= VehicleHelper.createVehicle("Bike", "Hero", "Dream yuga");
+		String actualBikeDetails = VehiclePrinter.printVehicleSpecification(objectBike);
+		assertEquals(expectedBikeDeatils,actualBikeDetails);
+	}
 }
