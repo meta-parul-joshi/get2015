@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.rmi.server.ObjID;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -26,13 +28,19 @@ public class VehicleHelperTest {
 
 	@Test
 	// To test for vehicleHelper class
-	public void testVehicleHelper() {
-		// Check for creation of car or bike object
-		Car car = new Car("abc", "xyz");
-		Bike bike = new Bike("def", "asd");
-		VehicleHelper.createVehicle("Car", "yes", "101");
-		VehicleHelper.createVehicle("Bike", "yes", "1001");
-		assertNotNull(car);
-		assertNotNull(bike);
+	public void testVehicleHelperForCar() {
+		// Check for creation of car object
+		VehicleHelper objectHelper = new VehicleHelper();
+		Vehicle objectCar = objectHelper.createVehicle("Car", "Varna", "Varna23");
+		assertEquals(true, objectCar instanceof Car);
+	}
+	
+	@Test
+	// To test for vehicleHelper class
+	public void testVehicleHelperForBike() {
+		// Check for creation of bike object
+		VehicleHelper objectHelper = new VehicleHelper();
+		Vehicle objectBike = objectHelper.createVehicle("Bike", "Varna", "Varna23");
+		assertEquals(true, objectBike instanceof Bike);
 	}
 }
