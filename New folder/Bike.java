@@ -48,5 +48,11 @@ public class Bike extends Vehicle
 			return false;
 		return true;
 	}
+	
+	@Override
+	public double calculateOnRoadPrice()
+	{
+		return super.calculateOnRoadPrice() + 500;
+	}
 }
 
