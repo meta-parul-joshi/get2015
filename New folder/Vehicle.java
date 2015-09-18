@@ -117,5 +117,9 @@ public class Vehicle
 
 	public void setRoadTax(double roadTax) {
 		this.roadTax = roadTax;
-	}	
+	}
+	
+	public double calculateOnRoadPrice() {
+		return price + roadTax;
+	}
 }
