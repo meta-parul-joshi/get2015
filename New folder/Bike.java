@@ -52,7 +52,7 @@ public class Bike extends Vehicle
 	@Override
 	public double calculateOnRoadPrice()
 	{
-		return super.calculateOnRoadPrice() + 500;
+		return super.calculateOnRoadPrice() + 100;
 	}
 }
 
