@@ -1,8 +1,6 @@
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -12,27 +10,25 @@ import javax.xml.stream.events.XMLEvent;
 
 public class StaxParser 
 {
-	final String VEHICLE = "vehicle";
-	final String CAR = "car";
-	final String BIKE = "bike";
-	final String VEHICLEID = "vehicleId";
-	final String MAKE = "make";
-	final String MODEL = "model";
-	final String ENGINEINCC = "engineInCC";
-	final String FUELCAPACITY = "fuelCapacity";
-	final String MILAGE = "milage";
-	final String PRICE = "price";
-	final String ROADTAX = "roadTax";
-	final String AC = "ac";
-	final String POWERSTERING = "powerStering";
-	final String ACCESSORYKIT = "accessoryKit";
-	final String SELFSTART = "selfStart";
-	final String HELMETPRICE = "helmetPrice";
-
-	// @SuppressWarnings({ "unchecked", "null" })
-	public List<Vehicle> readVehicle(String configFile) 
+	public static Response readVehicle(String configFile) 
 	{
-		List<Vehicle> vehicleObjectList = new ArrayList<Vehicle>();
+		final String CAR = "car";
+		final String BIKE = "bike";
+		final String VEHICLEID = "vehicleId";
+		final String MAKE = "make";
+		final String MODEL = "model";
+		final String ENGINEINCC = "engineInCC";
+		final String FUELCAPACITY = "fuelCapacity";
+		final String MILAGE = "milage";
+		final String PRICE = "price";
+		final String ROADTAX = "roadTax";
+		final String AC = "ac";
+		final String POWERSTERING = "powerStering";
+		final String AIRBAGS = "airBag";
+		final String SELFSTART = "selfStart";
+		final String HELMETPRICE = "helmetPrice";
+		final String CREATEDBY = "createdBy";
+		Response objectResponse = new Response();
 		try
 		{
 			// First, create a new XMLInputFactory
@@ -58,6 +54,10 @@ public class StaxParser
 					else if (startElement.getName().getLocalPart() == (BIKE)) 
 					{
 						objVehicle = new Bike();
+					}
+					else
+					{
+						objectResponse.output = "Vehicle other than Car and Bike";
 					}
 					
 					if (event.isStartElement()) 
@@ -104,7 +104,7 @@ public class StaxParser
 					if (event.asStartElement().getName().getLocalPart().equals(MILAGE)) 
 					{
 						event = eventReader.nextEvent();
-						objVehicle.setMilage(Integer.parseInt(event.asCharacters().getData()));
+						objVehicle.setmileage(Integer.parseInt(event.asCharacters().getData()));
 						continue;
 					}
 
@@ -119,13 +119,6 @@ public class StaxParser
 					{
 						event = eventReader.nextEvent();
 						objVehicle.setRoadTax(Double.parseDouble(event.asCharacters().getData()));
-						continue;
-					}
-
-					if (event.asStartElement().getName().getLocalPart().equals(MILAGE))
-					{
-						event = eventReader.nextEvent();
-						objVehicle.setMilage(Integer.parseInt(event.asCharacters().getData()));
 						continue;
 					}
 
@@ -157,7 +150,7 @@ public class StaxParser
 						continue;
 					}
 
-					if (event.asStartElement().getName().getLocalPart().equals(ACCESSORYKIT)) 
+					if (event.asStartElement().getName().getLocalPart().equals(AIRBAGS)) 
 					{
 						event = eventReader.nextEvent();
 						((Car) objVehicle).setAirBags(Boolean.valueOf(event.asCharacters().getData()));
@@ -177,6 +170,13 @@ public class StaxParser
 						((Bike) objVehicle).setHelmetPrice(Double.parseDouble(event.asCharacters().getData()));
 						continue;
 					}
+					
+					if (event.asStartElement().getName().getLocalPart().equals(CREATEDBY)) 
+					{
+						event = eventReader.nextEvent();
+						 objVehicle.setCreatedBy(event.asCharacters().getData());
+						continue;
+					}
 				}
 
 				if (event.isEndElement()) 
@@ -184,7 +184,7 @@ public class StaxParser
 					EndElement endElement = event.asEndElement();
 					if (endElement.getName().getLocalPart() == (CAR)||endElement.getName().getLocalPart() == (BIKE) ) 
 					{
-						vehicleObjectList.add(objVehicle);
+						objectResponse.vehicleObjectList.add(objVehicle);
 					}
 				}
 			}
@@ -198,6 +198,6 @@ public class StaxParser
 			e.printStackTrace();
 		}
 
-		return vehicleObjectList;
+		return objectResponse;
 	}
 }

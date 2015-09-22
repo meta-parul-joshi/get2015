@@ -10,8 +10,9 @@
 		<price>750000</price>
 		<roadTax>5000</roadTax>
 		<ac>true</ac>
-		<accessoryKit>true</accessoryKit>
+		<airBag>true</airBag>
 		<powerSteering>true</powerSteering>
+		<createdBy>User1</createdBy>
 	</car>
 
 	<car>
@@ -24,8 +25,9 @@
 		<price>600000</price>
 		<roadTax>2000</roadTax>
 		<ac>false</ac>
-		<accessoryKit>true</accessoryKit>
+		<airBag>true</airBag>
 		<powerSteering>true</powerSteering>
+		<createdBy>User2</createdBy>
 	</car>
 
 	<car>
@@ -38,8 +40,9 @@
 		<price>850000</price>
 		<roadTax>4000</roadTax>
 		<ac>true</ac>
-		<accessoryKit>true</accessoryKit>
+		<airBag>true</airBag>
 		<powerSteering>false</powerSteering>
+		<createdBy>User3</createdBy>
 	</car>
 
 	<bike>
@@ -53,6 +56,7 @@
 		<roadTax>500</roadTax>
 		<selfStart>true</selfStart>
 		<helmetPrice>1200</helmetPrice>
+		<createdBy>User4</createdBy>
 	</bike>
 
 	<bike>
@@ -66,6 +70,7 @@
 		<roadTax>600</roadTax>
 		<selfStart>false</selfStart>
 		<helmetPrice>1500</helmetPrice>
+		<createdBy>User5</createdBy>
 	</bike>
 
 	<bike>
@@ -79,6 +84,20 @@
 		<roadTax>300</roadTax>
 		<selfStart>true</selfStart>
 		<helmetPrice>1700</helmetPrice>
+		<createdBy>User6</createdBy>
 	</bike>
+	<plane>
+		<vehicleId>6</vehicleId>
+		<make>Make6</make>
+		<model>Model6</model>
+		<engineInCC>60</engineInCC>
+		<fuelCapacity>61</fuelCapacity>
+		<milage>62</milage>
+		<price>75000</price>
+		<roadTax>300</roadTax>
+		<selfStart>true</selfStart>
+		<helmetPrice>1700</helmetPrice>
+		<createdBy>User6</createdBy>
+	</plane>
 </vehicle>
 

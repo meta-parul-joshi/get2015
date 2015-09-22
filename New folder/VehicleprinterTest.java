@@ -28,7 +28,7 @@ public class VehicleprinterTest {
 	// Test for vehiclePrinter class for car
 	public void testprintVehicleSpecificationForCar() {
 		// checking for print result
-		String expectedCarDeatils = "Make : Verna,Model : verna23";
+		String expectedCarDeatils = "Make : Verna, Model : verna23, EngineInCC : 0, Fuel Capacity : 0, Milage : 0, Price : 0.0, Road Tax : 0.0, Created By : null, Created Time : null, Air bag : false, Air Conditioner : false, Power Steering : false";
 		Vehicle objectCar= VehicleHelper.createVehicle(VehicleType.Car, "Verna", "verna23");
 		String actualCarDetails = VehiclePrinter.printVehicleSpecification(objectCar);
 		assertEquals(expectedCarDeatils,actualCarDetails);
@@ -37,7 +37,7 @@ public class VehicleprinterTest {
 	@Test
 	// Test for vehiclePrinter class for bike
 	public void testprintVehicleSpecificationForBike() {
-		String expectedBikeDeatils = "Make : Hero,Model : Dream yuga";
+		String expectedBikeDeatils = "Make : Hero, Model : Dream yuga, EngineInCC : 0, Fuel Capacity : 0, Milage : 0, Price : 0.0, Road Tax : 0.0, Created By : null, Created Time : null, Self Start : false, Helmet Price : 0.0";
 		Vehicle objectBike= VehicleHelper.createVehicle(VehicleType.Bike, "Hero", "Dream yuga");
 		String actualBikeDetails = VehiclePrinter.printVehicleSpecification(objectBike);
 		assertEquals(expectedBikeDeatils,actualBikeDetails);

@@ -1,11 +1,14 @@
-//vehicle class
-public class VehiclePrinter {
-
-	// to print vehicle detail
-	public static String printVehicleSpecification(Vehicle vehicle) 
+/*Class to print vehicle details.
+ * @author parul 
+ * */
+public class VehiclePrinter 
+{
+	/*Function prints vehicle details.
+	 * It takes vehicle object as key parameter.
+	 * It return a string specifying vehicle details.*/
+	public static String printVehicleSpecification(Vehicle objectVehicle) 
 	{
-		//String result = "make" + ":" + vehicle.make + "," + "model:"+ vehicle.model;
-		return vehicle.toString();
+		return objectVehicle.toString();
 	}
 
 }
