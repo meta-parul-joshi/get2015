@@ -1,0 +1,49 @@
+body {
+    background:#E5E1D6;
+}
+
+#div1 
+{
+	background-color:white;
+	width:450px;
+	height:150px;
+	padding:10px;
+	
+}
+
+#div2
+{
+	background-color:white;
+	width:100px;
+	height:100px;
+	padding:10px;
+}
+
+header {
+	font-family:verdana;
+	font-size:50px;
+	font-weight:bold;
+    	background:#AED1ED;
+    	height:100px;
+    	text-align:center;
+	margin:10px;
+	margin-bottom:0px;
+	border:1px solid ;
+}
+
+footer {
+	margin:10px;
+	clear:both;
+     	background:#c0bcb1;
+    	height:75px;
+	border:1px solid ;
+
+} 
+
+section {
+	height:800px;
+	background-color:white;
+	margin:10px;
+	margin-bottom:0px;
+	border:1px solid ;
+}
