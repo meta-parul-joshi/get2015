@@ -16,7 +16,6 @@ section{
 	height:800px;
 	margin:0px 30px 30px 30px;
 	border: 1px solid black;
-	border-width:0px 1px 1px 1px;
 }
 div {
     width: 250px;
@@ -32,22 +31,22 @@ div {
 	font-family:verdana;
 }
 
-#rotateDiv {
+#rotateDiv:hover {
     -webkit-transform: rotate(20deg); 
     transform: rotate(20deg); 
 }
-#skewXDiv {  
+#skewXDiv :hover{  
     -webkit-transform: skewX(20deg); 
     transform: skewX(20deg); 	
 }
-#skewYDiv {
+#skewYDiv:hover {
     -webkit-transform: skewY(20deg); 
     transform: skewY(20deg); 
 }
 
-#scaleDiv {  
-    -webkit-transform: scale(2,3);
-     transform: scale(2,2); 
+#scaleDiv:hover {  
+	  -webkit-transform: scale(2,3);
+	 transform: scale(2,2); 
 	 margin-top:150px;
 	 margin-left:200px;
 }
