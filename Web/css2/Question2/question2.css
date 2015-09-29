@@ -1,0 +1,53 @@
+body{
+	 background:#E5E1D6;
+}
+header{
+	margin:30px 30px 0px 30px;
+	height:50px;
+	border: 1px solid black;
+	background:#AED1ED;
+	text-align:center;
+	padding:10px;
+	font-weight:bold;
+	font-size:30px;
+	font-family:verdana;
+}
+section{
+	height:800px;
+	margin:0px 30px 30px 30px;
+	border: 1px solid black;
+	border-width:0px 1px 1px 1px;
+}
+div {
+    width: 250px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+	color:blue;
+	text-align:center;
+	padding:20px;
+	font-size:16px;
+	float:left;
+	margin:20px;
+	font-family:verdana;
+}
+
+#rotateDiv {
+    -webkit-transform: rotate(20deg); 
+    transform: rotate(20deg); 
+}
+#skewXDiv {  
+    -webkit-transform: skewX(20deg); 
+    transform: skewX(20deg); 	
+}
+#skewYDiv {
+    -webkit-transform: skewY(20deg); 
+    transform: skewY(20deg); 
+}
+
+#scaleDiv {  
+    -webkit-transform: scale(2,3);
+     transform: scale(2,2); 
+	 margin-top:150px;
+	 margin-left:200px;
+}
