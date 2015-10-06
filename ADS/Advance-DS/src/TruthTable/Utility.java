@@ -1,6 +1,7 @@
+package TruthTable;
+
+
 import java.util.Scanner;
-
-
 public class Utility 
 {
 	public static int getIntegerValue(String message)
@@ -44,5 +45,34 @@ public class Utility
 		Scanner sc=new Scanner(System.in);
 		String inputStr = sc.nextLine();
 		return inputStr;
-	}	
+	}
+	
+	public static char getCharacterInput(String message)
+	{
+		System.out.println(message);
+		Scanner sc=new Scanner(System.in);
+		char input = sc.next().charAt(0);
+		if((input == 'y' || input == 'Y') || (input == 'n' || input == 'N'))
+		{
+			return input;
+		}
+		else
+		{	
+			return getCharacterInput(message);
+		
+		}
+		
+	}
+	public static int[] getArrayInput(String message)
+	{
+		System.out.println(message);
+		Scanner sc=new Scanner(System.in);
+		int array[] = new int[9];
+		for(int i = 0; i < array.length ; i++)
+		{
+			array[i] = sc.nextInt();
+		}
+		return array;
+	}
+	
 }
