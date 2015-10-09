@@ -31,12 +31,12 @@ public class State {
    * Initial constructor for State class.
    * @param input An array representing a puzzle.
    */
-  public State(int[] input) {
+  public State(int[] input,int n) {
     this.array = input;
     this.blankIndex = getIndex(input, 0);
     this.previous = null;
     this.g = 0;
-    this.h = Puzzle.getHeuristic(this.array);
+    this.h = Puzzle.getHeuristic(this.array,n);
   }
 
   /**
@@ -45,13 +45,13 @@ public class State {
    * @param previous The previous state.
    * @param blankIndex The new blank index.
    */
-  public State(State previous, int blankIndex) {
+  public State(State previous, int blankIndex,int n) {
     this.array = Arrays.copyOf(previous.array, previous.array.length);
     this.array[previous.blankIndex] = this.array[blankIndex];
     this.array[blankIndex] = 0;
     this.blankIndex = blankIndex;
     this.g = previous.g + 1;
-    this.h = Puzzle.getHeuristic(this.array);
+    this.h = Puzzle.getHeuristic(this.array,n);
     this.previous = previous;
   }
 
@@ -86,11 +86,15 @@ public class State {
    * of the current state of the puzzle it is called on.
    * @return The puzzle as a string.
    */
-  public String toString() {
+  public String toString(int n) {
     int[] state = this.array;
     String s = "\n\n";
-    for(int i = 0; i < state.length; i++) {
-      if(i % 3 == 0 && i != 0) s += "\n";
+    for(int i = 0; i < state.length; i++) 
+    {
+      if(i % n == 0 && i != 0)
+      {
+    	  s += "\n";
+      }
       s += (state[i] != 0) ? String.format("%d ", state[i]) : "  ";
     }
     return s;
@@ -101,11 +105,14 @@ public class State {
    * steps taken to solve the puzzle.
    * @return String - The puzzle steps as a string.
    */
-  public String allSteps() 
+  public String allSteps(int n) 
   {
     StringBuilder sb = new StringBuilder();
-    if (this.previous != null) sb.append(previous.allSteps());
-    sb.append(this.toString());
+    if (this.previous != null)
+    {
+    	sb.append(previous.allSteps(n));
+    }
+    sb.append(this.toString(n));
     return sb.toString();
   }
 
@@ -114,11 +121,11 @@ public class State {
    * puzzle has been solved using a StringBuilder.
    * @return String - The solution message.
    */
-  public String solutionMessage() 
+  public String solutionMessage(int n) 
   {
     StringBuilder sb = new StringBuilder();
     sb.append("Here are the steps to the goal state:");
-    sb.append(this.allSteps());
+    sb.append(this.allSteps(n));
     sb.append("\n\nGiven puzzle is SOLVED!");
     sb.append("\nSolution took " + this.g + " steps.\n");
     return sb.toString();
