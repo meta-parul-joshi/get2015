@@ -16,11 +16,11 @@ public class Move
    * @param state The state being operated on.
    * @return null if the state is invalid, the new state if valid.
    */
-  public static State up(State state) 
+  public static State up(State state, int n) 
   {
-    if (state.blankIndex > 2)
+    if (state.blankIndex > n-1)
     {
-    	return new State(state, state.blankIndex - 3);
+    	return new State(state, state.blankIndex - n,n);
     }
     
     return null;
@@ -32,11 +32,11 @@ public class Move
    * @param state The state being operated on.
    * @return null if the state is invalid, the new state if valid.
    */
-  public static State down(State state) 
+  public static State down(State state, int n) 
   {
-    if (state.blankIndex < 6)
+    if (state.blankIndex < (n*(n-1)))
     {
-    	return new State(state, state.blankIndex + 3);
+    	return new State(state, state.blankIndex + n,n);
     }
     
     return null;
@@ -48,11 +48,11 @@ public class Move
    * @param state The state being operated on.
    * @return null if the state is invalid, the new state if valid.
    */
-  public static State left(State state) 
+  public static State left(State state,int n) 
   {
-    if (state.blankIndex % 3 > 0)
+    if (state.blankIndex % n > 0)
     {
-    	return new State(state, state.blankIndex - 1);
+    	return new State(state, state.blankIndex - 1,n);
     }
     
     return null;
@@ -64,11 +64,11 @@ public class Move
    * @param state The state being operated on.
    * @return null if the state is invalid, the new state if valid.
    */
-  public static State right(State state) 
+  public static State right(State state,int n) 
   {
-    if (state.blankIndex % 3 < 2)
+    if (state.blankIndex % n < n-1)
     {
-    	return new State(state, state.blankIndex + 1);
+    	return new State(state, state.blankIndex + 1,n);
     }
     
     return null;
