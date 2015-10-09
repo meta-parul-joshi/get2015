@@ -62,11 +62,12 @@ public class Utility
 		}
 		
 	}
-	public static int[] getArrayInput(String message)
+	public static int[] getArrayInput(String message,int n)
 	{
 		System.out.println(message);
 		Scanner sc=new Scanner(System.in);
-		int array[] = new int[9];
+		int size = n*n;
+		int array[] = new int[size];
 		for(int i = 0; i < array.length ; i++)
 		{
 			array[i] = sc.nextInt();
