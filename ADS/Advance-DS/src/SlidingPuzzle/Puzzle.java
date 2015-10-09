@@ -34,8 +34,8 @@ public class Puzzle {
 	 * Constructor for puzzle class.
 	 * @param puzzleInput Valid sliding puzzle in 2D array format.
 	 */
-	public Puzzle(int[] puzzleInput) {
-		this.initialState = new State(puzzleInput);
+	public Puzzle(int[] puzzleInput,int n) {
+		this.initialState = new State(puzzleInput,n);
 		this.state = this.initialState;
 	}
 
@@ -75,14 +75,14 @@ public class Puzzle {
 	 * @param array A puzzle state array.
 	 * @return int - The heuristic for the current puzzle.
 	 */
-	public static int getHeuristic(int[] array) 
+	public static int getHeuristic(int[] array,int n) 
 	{
 		int heuristic = 0;
 		for(int i = 0; i < array.length; i++) 
 		{
 			if (array[i] != 0)
 			{
-				heuristic += getManhattanDistance(i, array[i]);
+				heuristic += getManhattanDistance(i, array[i],n);
 			}
 		}
 		
@@ -96,9 +96,9 @@ public class Puzzle {
 	 * @param number The value of the tile.
 	 * @return int - The distance between the tile and it's goal state.
 	 */
-	public static int getManhattanDistance(int index, int number) 
+	public static int getManhattanDistance(int index, int number,int n) 
 	{
-		return Math.abs((index / 3) - ((number-1) / 3)) + Math.abs((index % 3) - ((number-1) % 3));
+		return Math.abs((index / n) - ((number-1) / n)) + Math.abs((index % n) - ((number-1) % n));
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class Puzzle {
 	/**
 	 * This method handles the solving of the puzzle.
 	 */
-	public void solve() 
+	public void solve(int n) 
 	{
 		// Clear the queue and add the initial state.
 		queue.clear();
@@ -132,7 +132,7 @@ public class Puzzle {
 			// Check if the state is a solution.
 			if (this.state.isSolved()) 
 			{
-				System.out.println(this.state.solutionMessage());
+				System.out.println(this.state.solutionMessage(n));
 				return;
 			}
 
@@ -140,31 +140,33 @@ public class Puzzle {
 			visited.add(state);
 
 			// Add valid moves to the queue.
-			this.addToQueue(Move.up(state));
-			this.addToQueue(Move.down(state));
-			this.addToQueue(Move.left(state));
-			this.addToQueue(Move.right(state));
+			this.addToQueue(Move.up(state,n));
+			this.addToQueue(Move.down(state,n));
+			this.addToQueue(Move.left(state,n));
+			this.addToQueue(Move.right(state,n));
 		}
 	}
 
 	public static void main(String[] args) {
-		System.out.println("3*3 Sliding Puzzle\n");
+		System.out.println("\t N X N Sliding Puzzle");
 		char choice;
 		do
 		{	
-		    int p[] = Utility.getArrayInput("Enter 8 sliding puzzle : ");
-			Puzzle puzzle = new Puzzle(p);
-			System.out.println("Given puzzle:\n"+ puzzle.state.toString());
+			int n = Utility.getIntegerValue("Enter value of N");
+			
+		    int p[] = Utility.getArrayInput("Enter "+ n +"*"+n+" sliding puzzle : ",n);
+			Puzzle puzzle = new Puzzle(p,n);
+			System.out.println("Given puzzle:\n"+ puzzle.state.toString(n));
 			
 			// Check if the puzzle is solvable.
 			if (!puzzle.isSolvable()) 
 			{
-				System.out.println("Given puzzle is NOT solvable!\n"+ puzzle.state.toString());
+				System.out.println("Given puzzle is NOT solvable!\n"+ puzzle.state.toString(n));
 				System.exit(0);
 			}
 	
 			// Solve the puzzle.
-			puzzle.solve();
+			puzzle.solve(n);
 			choice = Utility.getCharacterInput("Do you want to contitnue press y otherwise n");
 		}while(choice == 'y' || choice == 'Y');
 	}
