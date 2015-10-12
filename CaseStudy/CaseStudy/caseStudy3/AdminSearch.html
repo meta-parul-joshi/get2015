@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel ="stylesheet" href="Search.css">
+<script type="text/javascript" src="Script.js"></script>
+</head>
+<body>
+	<header>
+		<h1 id = "siteTitle">Car Dekho</h1>
+		<div id = "logo"><img src = "Logo1.png" alt = "Car Logo" /></div>
+		<div id = "login">
+		<a href = "login.html">Logout</a> /
+		<a href = "AdminSearch.html">Search</a> /
+		<a href = "create.html">Create</a> /
+		<a href = "AdminSearch.html">Edit</a></div>
+		<div id = "socialMedia">
+			<ul>
+				<li class = "socialMediaLogo"><a href ="javaScript:;"><img src = "facebook.png"/></a></li>
+				<li class = "socialMediaLogo"><a href ="javaScript:;"><img src = "twitter.png"/></a></li>
+				<li class = "socialMediaLogo"><a href ="javaScript:;"><img src = "linkedIn.png"/></a></li>
+				<li class = "socialMediaLogo"><a href ="javaScript:;"><img src = "googlePlus.png"/></a></li>
+			</ul>
+		</div>
+	</header>
+	<nav>	
+		<ul>
+			<li class = "navBar"><a href = "AdminHome.html">Home</a></li>
+			<li class = "navBar"><a href = "AdminAboutUs.html">About Us</a></li>
+			<li class = "navBar"><a href = "AdminContactUs.html">Contact Us</a></li>
+			<li class = "navBar"><a href = "AdminCareers.html">Careers</a></li>		
+		</ul>
+	</nav>
+	<div class = "section">
+		<div id = "searchWindow">
+			<form>
+					<table cellspacing="10">
+					<caption style="font-size:40px">
+						Find Car..<br>
+					</caption>
+					<tr>
+					<td><label id = "searchMake">Make :</label></td>
+					<td>
+						<select id = "firstList" name = "selectMake" class = "text" onchange = "activeSearch()">
+							<option value ="">- -  Select Make - -</option>
+							<option value ="maruti">Maruti</option>
+							<option value ="hyundai">Hyundai</option>
+							<option value ="bmw">BMW</option>
+							<option value ="audi">Audi</option>
+							<option value ="ford">Ford</option>
+							<option value ="fiat">Fiat</option>
+							<option value ="scoda">Scoda</option>
+							<option value ="honda">Honda</option><br/>
+					</td>
+					<td><label id = "searchModel">Model :</label></td>
+					<td>
+						<select id = "secondList" name = "selectModel" class = "text" onchange = "activeSearch()">
+							<option value ="">- -  Select Make - -</option>
+							<option value ="verna">Verna</option>
+							<option value ="i10">i10</option>
+							<option value ="7series">7 Series</option>
+							<option value ="a4">A4</option>
+							<option value ="figo">Figo</option>
+							<option value ="punto">Punto</option>
+							<option value ="rapid">Rapid</option>
+							<option value ="accord">Accord</option><br/>
+					</td>
+					</tr>
+					<tr>
+						<td><input type = "radio" name = "searchCriteria" value = "model" checked onchange="searchScript1()"/>By Model</td>
+						<td><input type = "radio" name = "searchCriteria" value = "Budget" onchange="searchScript2()"/>By Budget</td>
+					</tr>
+					<tr>
+					<td colspan = "2" align = "center"><input class = "submit" id = "submitSearch" type = "submit" value = "Search" onclick = "validateSearch()" formaction = "searchResult.html" disabled/></td>
+					</tr>
+					</table>		
+			</form>
+		</div>
+		</div>
+	<footer>
+		<p> &copy Copyright 2015. All Rights Reserved.</p>
+		<ul>
+			<li class = "navBar"><a href = "AdminHome.html">Home</a></li>
+			<li class = "navBar"><a href = "AdminAboutUs.html">About Us</a></li>
+			<li class = "navBar"><a href = "AdminContactUs.html">Contact Us</a></li>
+			<li class = "navBar"><a href = "AdminCareers.html">Careers</a></li>		
+		</ul>
+	</footer>
+</body>
+</html>
