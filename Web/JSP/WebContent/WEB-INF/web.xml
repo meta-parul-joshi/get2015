@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<display-name>RegistrationForm2</display-name>
+	<servlet>
+		<display-name>myservlet</display-name>
+		<servlet-name>RegistrationForm2</servlet-name>
+		<servlet-class>com.Servlet.RegistrationForm2</servlet-class>
+	</servlet>
+		<servlet>
+		<display-name>myservlet2</display-name>
+		<servlet-name>ValidationCheck</servlet-name>
+		<servlet-class>com.Servlet.ValidationCheck</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistrationForm2</servlet-name>
+		<url-pattern>/RegistrationForm2</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ValidationCheck</servlet-name>
+		<url-pattern>/ValidationCheck</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
