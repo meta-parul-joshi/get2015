@@ -26,12 +26,11 @@ public class JacksonMapper {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			File json = new File("employee.json");
-			Employee employee1 = mapper.readValue(json, Employee.class);
+			File jsonFile = new File("employee.json");
+			Employee employee1 = mapper.readValue(jsonFile, Employee.class);
 			System.out.println("Java object created from JSON String :");
-			System.out.println(employee1.getEmployeeName());
-			System.out.println(employee1.getEmployee_id());
-			System.out.println(employee1.getDate_Of_Birth());
+			System.out.println(employee1);
+			
 
 		} catch (JsonGenerationException ex) {
 			ex.printStackTrace();
@@ -45,9 +44,14 @@ public class JacksonMapper {
 
 	/* Java method to convert Java Object into JSON String with help of Jackson API */
 	public static void toJSON() {
-		Employee employee = new Employee("Parul",678, "parul@gmail.com",
-				"03-10-2015");
-
+		Employee employee = new Employee();
+		employee.setEmployeeName("Parul");
+		employee.setEmployee_id(678);
+		employee.setCtcPerAnnum(18000);
+		employee.setDate_Of_Birth("14-04-1994");
+		employee.setDate_Of_Joining("03-08-2015");
+		employee.setEmail_id("parul@gmail.com");
+		
 		// our bridge from Java to JSON and vice versa
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -66,6 +70,5 @@ public class JacksonMapper {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-	}
-	
+	}	
 }
