@@ -1,40 +1,36 @@
 package com.metacube.Question2;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/* Pojo class for employee */
+
+/** Pojo class for employee */
+
+/**
+ * In order to write a composite data property (email) out to JSON without reading
+ * it back in, you need to explicitly ignore the property, as well as the setter and
+ * then apply the @JsonProperty annotation to the getter.
+ **/
+
 public class Employee {
+	
 	String employeeName;
 	int employee_id;
+	@JsonIgnore
 	String email_id;
+	
+	@JsonIgnore
 	String date_Of_Birth;
 	String date_Of_Joining;
+	
+	@JsonIgnore
 	int ctcPerAnnum;
 
-	/**
-	 * Parameterized Constructor
-	 * 
-	 * @param employeeName
-	 * @param employee_id
-	 * @param email_id
-	 * @param date_Of_Joining
-	 */
-	public Employee(String employeeName, int employee_id, String email_id,
-			String date_Of_Joining) {
-		super();
-		this.employeeName = employeeName;
-		this.employee_id = employee_id;
-		this.email_id = email_id;
-		this.date_Of_Joining = date_Of_Joining;
-
-	}
 
 	/**
 	 * Default constructor
 	 */
 	public Employee() {
-		this.ctcPerAnnum = 18000;
-		this.date_Of_Birth = "";
-		this.date_Of_Joining = "";
 	}
 	
 	/**
@@ -70,6 +66,7 @@ public class Employee {
 	/**
 	 * @return the email_id
 	 */
+	@JsonProperty
 	public String getEmail_id() {
 		return email_id;
 	}
@@ -78,13 +75,23 @@ public class Employee {
 	 * @param email_id
 	 *            the email_id to set
 	 */
+	@JsonIgnore
 	public void setEmail_id(String email_id) {
 		this.email_id = email_id;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [employeeName=" + employeeName + ", employee_id="
+				+ employee_id + ", email_id=" + email_id + ", date_Of_Birth="
+				+ date_Of_Birth + ", date_Of_Joining=" + date_Of_Joining
+				+ ", ctcPerAnnum=" + ctcPerAnnum + "]";
 	}
 
 	/**
 	 * @return the date_Of_Birth
 	 */
+	@JsonIgnore
 	public String getDate_Of_Birth() {
 		return date_Of_Birth;
 	}
@@ -115,6 +122,7 @@ public class Employee {
 	/**
 	 * @return the ctcPerAnnum
 	 */
+	@JsonIgnore
 	public int getCtcPerAnnum() {
 		return ctcPerAnnum;
 	}
@@ -126,5 +134,4 @@ public class Employee {
 	public void setCtcPerAnnum(int ctcPerAnnum) {
 		this.ctcPerAnnum = ctcPerAnnum;
 	}
-
 }
