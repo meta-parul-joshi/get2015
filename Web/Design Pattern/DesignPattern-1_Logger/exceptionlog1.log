@@ -1,0 +1,52 @@
+Oct 21, 2015 1:58:51 PM MyLogger doLogging
+INFO: java.lang.ArithmeticException: / by zero
+	at LoggerMain.main(LoggerMain.java:12)
+
+Oct 21, 2015 1:58:52 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:24)
+
+Oct 21, 2015 1:58:52 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:24)
+
+Oct 21, 2015 1:58:52 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:35)
+
+Oct 21, 2015 1:58:52 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:35)
+
+Oct 21, 2015 1:58:52 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:35)
+
+Oct 21, 2015 2:01:24 PM MyLogger doLogging
+INFO: java.lang.ArithmeticException: / by zero
+	at LoggerMain.main(LoggerMain.java:12)
+
+Oct 21, 2015 2:01:24 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:24)
+
+Oct 21, 2015 2:01:24 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:24)
+
+Oct 21, 2015 2:01:24 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:35)
+
+Oct 21, 2015 2:01:24 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:35)
+
+Oct 21, 2015 2:01:24 PM MyLogger doLogging
+INFO: java.lang.ArrayIndexOutOfBoundsException: 5
+	at LoggerMain.main(LoggerMain.java:35)
+
+Oct 21, 2015 2:02:01 PM MyLogger doLogging
+INFO: java.lang.ArithmeticException: / by zero
+	at LoggerMain.main(LoggerMain.java:12)
+
