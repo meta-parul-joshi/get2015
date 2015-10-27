@@ -37,7 +37,6 @@ public class Home extends HttpServlet {
 		SearchDBHelper searchDBHelper = new SearchDBHelper();
 		try 
 		{
-			System.out.println(searchDBHelper.populateRecentList().size());
 			request.setAttribute("carList", searchDBHelper.populateRecentList());
 		}
 		catch (CarDekhoSystemException e) 
