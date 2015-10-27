@@ -109,12 +109,10 @@ public class SearchDBHelper {
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try
-		{System.out.println("count");
+		{
 			/* Getting connection */
 			connection = ConnectionFactory.getConnection();
-			System.out.println("count1");
 			statement = connection.createStatement();
-			System.out.println("count2");
 			/* executing query */
 			resultSet = statement.executeQuery(CREATE_RECENT_LIST_QUERY);
 			System.out.println("count3");
