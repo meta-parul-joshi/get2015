@@ -1,0 +1,50 @@
+body {
+    background:#E5E1D6;
+}
+
+header {
+	font-family:verdana;
+	font-size:30px;
+	font-weight:bold;
+    background:#AED1ED;
+    height:70px;
+    text-align:center;
+	margin:10px;
+	margin-bottom:0px;
+	border:1px solid ;
+	padding-top:5px;
+}
+
+footer {
+	margin:10px;
+	clear:both;
+    background:#c0bcb1;
+    height:75px;
+	border:1px solid ;
+} 
+
+section {
+	height:800px;
+	background-color:white;
+	margin:10px;
+	border:1px solid black;
+}
+
+.hello
+{
+	margin:10px 10px 10px 10px;
+	border:1px solid black;
+	width:25%;
+	height:25%;
+}
+
+#divBox
+{
+	background:#98bf21;
+	height:100px;
+	width:100px;
+	position:relative;
+	border:1px solid black;
+	left:0px;
+	top:0px;
+}
