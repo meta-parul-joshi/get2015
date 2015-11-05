@@ -1,0 +1,110 @@
+<!document.html>
+<html>
+<head>
+	<script type="text/javascript" src="jquery-1.11.3.js"></script>
+	<link rel="stylesheet" href="BootStrap/css/bootstrap.min.css"/>
+	<script type="text/javascript" src="BootStrap/js/bootstrap.min.js"></script>
+	<style>
+		span {
+			font-size : 4em;
+		}
+	</style>
+</head>
+<body>
+	<div class = "container-fluid">
+		<div class = "text-center col-lg-12 col-md-12 col-sm-12 hidden-xs"><h2>Sample Form</h2></div>
+		<span class = "glyphicon glyphicon-film hidden-lg hidden-md hidden-sm"></span>
+		<div class = "container-fluid well">
+			<form role = "form" class ="form-horizontal">
+				<div class = "form-group">
+					<label for = "txtMovieTitle" class = "col-lg-1 col-md-3 col-sm-6 col-xs-12">
+						Movie title
+					</label>
+					<div class = "col-lg-5 col-md-3 col-sm-6 col-xs-12">
+						<input type = "text" class = "form-control" id = "txtMovieTitle"/>
+					</div>
+					<label class = "col-lg-1 col-md-3 col-sm-6 col-xs-12">
+						Genre
+					</label>
+					<div class = "col-lg-5 col-md-3 col-sm-6 col-xs-12">
+						<select class = "form-control">
+						<option>Choose a genre</option>
+						<option>Action</option>
+						<option>Adventure</option>
+						<option>Comedy</option>
+						<option>Crime</option>
+						<option>Fantasy</option>
+						<option>Horror</option>
+						<option>Romance</option>
+						<option>Mystery</option>
+						<option>Animation</option>
+						</select>
+					</div>
+				</div>
+				<div class = "form-group">
+					<label for = "txtDirector" class = "col-lg-1 col-md-3 col-sm-6 col-xs-12">Director</label>
+					<div class = "col-lg-2 col-md-3 col-sm-6 col-xs-12">
+						<input type = "text" class = "form-control" id = "txtDirector"/>
+					</div>
+					<label for = "txtWritter" class = "col-lg-1 col-md-3 col-sm-6 col-xs-12">Writter</label>
+					<div class = "col-lg-2 col-md-3 col-sm-6 col-xs-12">
+						<input type = "text" class = "form-control" id = "txtWritter"/>
+					</div>
+					<label for = "txtProducer" class = "col-lg-1 col-md-3 col-sm-6 col-xs-12">Producer</label>
+					<div class = "col-lg-2 col-md-3 col-sm-6 col-xs-12">
+						<input type = "text" class = "form-control" id = "txtProducer"/>
+					</div>
+					<label for = "txtComposer" class = "col-lg-1 col-md-3 col-sm-6 col-xs-12">Composer</label>
+					<div class = "col-lg-2 col-md-3 col-sm-6 col-xs-12">
+						<input type = "text" class = "form-control" id = "txtComposer"/>
+					</div>
+				</div>
+				<div class = "form-group">
+					<label for = "txtWebsite" class = "col-lg-1 col-md-3 col-sm-6 col-xs-12">
+						Wedsite
+					</label>
+					<div class = "col-lg-5 col-md-3 col-sm-6 col-xs-12" >
+						<input type = "text" class = "form-control" id = "txtWebsite"/>
+					</div>
+					<label for = "txtYouTube" class = " col-lg-1 col-md-3 col-sm-6 col-xs-12">
+						YouTube Trailer
+					</label>
+					<div class = "col-lg-5 col-md-3 col-sm-6 col-xs-12">
+						<input type = "text" class = "form-control" id = "txtYouTube"/>
+					</div>
+				</div>
+				<div class = "form-group">
+					<label class = "col-lg-12 col-md-12 col-sm-12 col-xs-12" for = "txtAreaReview">
+						Review:
+					</label>
+					<div class = "col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<textarea rows = "4" id = "txtAreaReview" class ="col-lg-12 col-md-12 col-sm-12 col-xs-12"></textarea>
+					</div>
+				</div>
+				<div class = "form-group">
+					<div class = "col-lg-3 col-md-3 col-sm-12 col-xs-12">
+						Rating:
+					</div>
+					<div class = "col-lg-3 col-md-3 col-sm-4 col-xs-12">
+						<input type = "radio" id = "txtYouTube" name = "response" /><label class = "text-danger">&nbsp;Terrible</label>
+					</div>
+					<div class = "col-lg-3 col-md-3 col-sm-4 col-xs-12">
+						<input type = "radio" id = "txtYouTube" name = "response"/><label class = "text-primary">&nbsp;Watchable</label>
+					</div>
+					<div class = "col-lg-3 col-md-3 col-sm-4 col-xs-12">
+						<input type = "radio" id = "txtYouTube" name = "response"/><label class = "text-success">&nbsp;Bestever</label>
+					</div>
+				</div>
+				<div class = "form-group">
+					<div class = "col-lg-3 col-lg-push-3 col-md-4 col-md-push-3 col-sm-6 col-xs-12">
+						<button type = "button" class = "btn btn-default btn-sm">Cancel</button>
+						<button type = "button" class = "btn btn-primary btn-sm">Visible</button>
+						<button type = "button" class = "btn btn-success btn-sm">Submit</button>
+						<button type = "button" class = "btn btn-danger btn-sm">Delete</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
